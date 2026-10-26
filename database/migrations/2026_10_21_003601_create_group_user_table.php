@@ -12,6 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('group_user', function (Blueprint $table) {
+            $table->string('role')->default('member');
+            $table->timestamp('joined_at')->useCurrent();
+
             $table->foreignId('group_id')
                 ->constrained()
                 ->cascadeOnDelete();

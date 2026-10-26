@@ -21,7 +21,7 @@ class CurrencyFactory extends Factory
 
         return [
             'name' => $code,
-            'symbol' => fake()->currencySymbol(),
+            'symbol' => fake()->randomLetter(),
             'code' => $code,
             'is_active' => true,
         ];

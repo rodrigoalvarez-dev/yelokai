@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Account;
+use App\Models\Currency;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +20,7 @@ class AccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->bankAccountName(),
+            'name' => fake()->company(),
             'user_id' => User::factory(),
             'currency_id' => Currency::factory(),
         ];

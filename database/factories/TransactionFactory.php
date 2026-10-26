@@ -2,7 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Account;
+use App\Models\Category;
 use App\Models\Transaction;
+use App\Models\User;
+use App\Shared\TransactionCertainty;
+use App\Shared\TransactionStatus;
+use App\Shared\TransactionType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +26,7 @@ class TransactionFactory extends Factory
         return [
             'amount' => fake()->randomFloat(2, 1, 1000),
             'description' => fake()->sentence(),
-            'date' => fake()->dateTimeBetween('-1 year', 'now'),
+            'date' => fake()->dateTimeBetween('-1 year'),
             'type' => fake()->randomElement(TransactionType::cases()),
             'status' => fake()->randomElement(TransactionStatus::cases()),
             'certainty' => fake()->randomElement(TransactionCertainty::cases()),
