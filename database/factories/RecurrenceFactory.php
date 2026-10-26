@@ -2,7 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Account;
+use App\Models\Category;
 use App\Models\Recurrence;
+use App\Models\User;
+use App\Shared\RecurrenceFrequency;
+use App\Shared\TransactionType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

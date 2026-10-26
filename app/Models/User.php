@@ -6,6 +6,8 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,7 +44,7 @@ class User extends Authenticatable
 
     public function defaultCurrency(): BelongsTo
     {
-        return $this->belongsTo(Currency::class);
+        return $this->belongsTo(Currency::class, 'currency_id');
     }
 
     public function groups(): BelongsToMany
@@ -54,5 +56,26 @@ class User extends Authenticatable
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function recurrences(): HasMany
+    {
+        return $this->hasMany(Recurrence::class);
+    }
+
+    public function sentSettlements(): HasMany
+    {
+        return $this->hasMany(
+            Settlement::class,
+            'from_user_id'
+        );
+    }
+
+    public function receivedSettlements(): HasMany
+    {
+        return $this->hasMany(
+            Settlement::class,
+            'to_user_id'
+        );
     }
 }

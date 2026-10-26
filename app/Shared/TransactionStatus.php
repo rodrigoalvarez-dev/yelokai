@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Shared;
+
 enum TransactionStatus: string
 {
     case Pending = 'pending';

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Shared\RecurrenceFrequency;
+use App\Shared\TransactionType;
 use Database\Factories\RecurrenceFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['amount', 'description', 'frequency', 'type', 'starts_at', 'ends_at', 'user_id', 'category_id', 'account_id', 'group_id'])]

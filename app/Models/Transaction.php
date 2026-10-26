@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Shared\TransactionCertainty;
+use App\Shared\TransactionStatus;
+use App\Shared\TransactionType;
 use Database\Factories\TransactionFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['amount', 'description', 'date', 'type', 'status', 'certainty', 'user_id', 'category_id', 'account_id', 'group_id', 'recurrence_id'])]
 #[Table('transactions')]
@@ -50,5 +54,10 @@ class Transaction extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function splits(): HasMany
+    {
+        return $this->hasMany(TransactionSplit::class);
     }
 }

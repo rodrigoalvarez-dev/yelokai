@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable(['name'])]
+#[Table('groups')]
 class Group extends Model
 {
     /** @use HasFactory<GroupFactory> */
@@ -24,5 +26,15 @@ class Group extends Model
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function settlements(): HasMany
+    {
+        return $this->hasMany(Settlement::class);
+    }
+
+    public function invitations(): HasMany
+    {
+        return $this->hasMany(GroupInvitation::class);
     }
 }
