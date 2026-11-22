@@ -30,11 +30,17 @@ class TransactionFactory extends Factory
             'type' => fake()->randomElement(TransactionType::cases()),
             'status' => fake()->randomElement(TransactionStatus::cases()),
             'certainty' => fake()->randomElement(TransactionCertainty::cases()),
-            'user_id' => User::factory(),
-            'category_id' => Category::factory(),
-            'account_id' => Account::factory(),
             'group_id' => null,
             'recurrence_id' => null,
         ];
+    }
+
+    public function forUser(User $user): static
+    {
+        return $this->state(fn () => [
+            'user_id' => $user->id,
+            'category_id' => Category::factory()->for($user),
+            'account_id' => Account::factory()->for($user),
+        ]);
     }
 }
